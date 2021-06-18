@@ -22,7 +22,8 @@ class Animal_Shougi_Super:
         self.first=1#先手が誰か
         self.first_change=0#ゲームがスタートしたら1になる
         self.start=0#ゲームスタートしたターン数
-        self.friend=int(random.random()//0.5)+1
+        # self.friend=int(random.random()//0.5)+1
+        self.friend=2  # sente
         self.movable = {'K': np.array([[0, 1], [0, -1], [1, 0], [-1, 0]]),
            'Z': np.array([[1, 1], [1, -1], [-1, 1], [-1, -1]]),
            'L': np.array([[0, 1], [0, -1], [1, 0], [-1, 0], [1, 1], [1, -1], [-1, 1], [-1, -1]]),

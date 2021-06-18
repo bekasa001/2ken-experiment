@@ -49,8 +49,8 @@ class Animal_Shougi_Super:
         n2_ = n2.copy()
         if (ni == 0 and ps_[i][j] == 'L'):
             trying = True
-        if (ni == 0 and ps_[i][j] == 'H'):
-            ps_[i][j] = 'N'
+        # if (ni == 0 and ps_[i][j] == 'H'):
+        #     ps_[i][j] = 'N'
         if (pi_[ni][nj] == -1):
             if (ps_[ni][nj] == 'L'):
                 catch = True
@@ -113,8 +113,8 @@ class Animal_Shougi_Super:
                             nps, npi, nn1, nn2, catch, trying = self.move(ps, pi, n1, n2, i, j, i + k[0], j + k[1])
                             if catch:
                                 return True
-                            if trying and not self.check(np.flip(nps), (-1) * np.flip(npi)):
-                                return True
+                            # if trying and not self.check(np.flip(nps), (-1) * np.flip(npi)):
+                            #     return True
                             if not self.win(np.flip(nps), (-1) * np.flip(npi), nn2, nn1, n-1):
                                 return True
                 if pi[i][j] == 0:
@@ -438,6 +438,12 @@ class Animal_Shougi_Super:
         tmp=self.m_now.copy()
         self.m_now=self.m_next.copy()
         self.m_next=tmp.copy()
+    def n2h(self):
+        Cstr=self.Bstr.copy()
+        for i in range(H):
+            for j in range(W):
+                if(Cstr[i][j]=='N'):Cstr[i][j]='H'
+        return Cstr
     
     def step(self):#ターンの経過毎に発動
     
@@ -537,7 +543,7 @@ while True:
             ass.step()
             print (ass.Bstr)
             print (ass.Bint)
-            if(ass.turn%2==(ass.start+ass.friend)%2 and ass.win(ass.Bstr, ass.Bint, ass.convert(ass.m_now), ass.convert(ass.m_next), 3)):
+            if(ass.turn%2==(ass.start+ass.friend)%2 and ass.win(ass.n2h(), ass.Bint, ass.convert(ass.m_now), ass.convert(ass.m_next), 3)):
                 switchbot_my.fall()
                 print ("friend: " + ass.friend)  # 1: gote 2: sente
             teban = 1 - teban
